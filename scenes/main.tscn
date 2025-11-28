@@ -1,0 +1,110 @@
+[gd_scene load_steps=2 format=3 uid="uid://bewhe067c43xi"]
+
+[ext_resource type="PackedScene" uid="uid://1hxqv24awscr" path="res://scenes/player_container.tscn" id="1_ig7tw"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+columns = 4
+
+[node name="PlayerContainer" parent="MarginContainer/HBoxContainer/GridContainer" instance=ExtResource("1_ig7tw")]
+layout_mode = 2
+
+[node name="PlayerContainer2" parent="MarginContainer/HBoxContainer/GridContainer" instance=ExtResource("1_ig7tw")]
+layout_mode = 2
+
+[node name="PlayerContainer3" parent="MarginContainer/HBoxContainer/GridContainer" instance=ExtResource("1_ig7tw")]
+layout_mode = 2
+
+[node name="PlayerContainer4" parent="MarginContainer/HBoxContainer/GridContainer" instance=ExtResource("1_ig7tw")]
+layout_mode = 2
+
+[node name="PlayerContainer5" parent="MarginContainer/HBoxContainer/GridContainer" instance=ExtResource("1_ig7tw")]
+layout_mode = 2
+
+[node name="PlayerContainer6" parent="MarginContainer/HBoxContainer/GridContainer" instance=ExtResource("1_ig7tw")]
+layout_mode = 2
+
+[node name="PlayerContainer7" parent="MarginContainer/HBoxContainer/GridContainer" instance=ExtResource("1_ig7tw")]
+layout_mode = 2
+
+[node name="PlayerContainer8" parent="MarginContainer/HBoxContainer/GridContainer" instance=ExtResource("1_ig7tw")]
+layout_mode = 2
+
+[node name="GameController" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/GameController"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Game status"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "adsfadfafsfdadfadfadsfafdafdafdjal;kfgjalk;dfjalkvjklcvnmcvnmcvnajwhroawhiotqhjiofjaklfdjalkfjak;lsvnalnvkalnvla;vna;lkvna;lvjaklvja"
+fit_content = true
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Match"
+
+[node name="Button2" type="Button" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Match"
+
+[node name="Button3" type="Button" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Match"
+
+[node name="Button4" type="Button" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Match"
