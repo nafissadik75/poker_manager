@@ -27,6 +27,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="AddPlayerButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Add Player"

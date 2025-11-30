@@ -14,11 +14,19 @@ var this_name : String :
 @onready var player_name: Label = $VBoxContainer/PlayerName
 @onready var p_name_line_edit: LineEdit = $VBoxContainer/PlayerNameLineEdit
 
-func _on_player_name_line_edit_text_submitted(new_text: String) -> void:
-	if this_name:
-		GameManager.change_player_name_in_dict(new_text, this_name)
-	else:
-		GameManager.players[new_text] = 0
+
+func set_player_name(name_text : String) -> void:
+	name_text = name_text.to_upper()
 	
-	this_name = new_text
-	player_name.set_text(this_name)
+	if this_name:
+		GameManager.change_player_name_in_dict(name_text, this_name)
+	else:
+		GameManager.players[name_text] = 0
+	this_name = name_text
+
+func _on_player_name_line_edit_text_submitted(new_text: String) -> void:
+	set_player_name(new_text)
+
+func _on_player_name_line_edit_focus_exited() -> void:
+	if not p_name_line_edit.text.is_empty():
+		set_player_name(p_name_line_edit.text)
