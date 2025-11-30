@@ -25,7 +25,8 @@ func set_player_name(name_text : String) -> void:
 	this_name = name_text
 
 func _on_player_name_line_edit_text_submitted(new_text: String) -> void:
-	set_player_name(new_text)
+	if not new_text.is_empty():
+		set_player_name(new_text)
 
 func _on_player_name_line_edit_focus_exited() -> void:
 	if not p_name_line_edit.text.is_empty():
