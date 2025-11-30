@@ -1,7 +1,8 @@
+## Autoload script
+## Game Manager
 extends Node
 
 var players : Dictionary = {
-	
 }
 
 func change_player_name_in_dict(new_name : String, old_name : String) -> bool:
