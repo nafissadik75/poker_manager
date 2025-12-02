@@ -10,22 +10,35 @@ config_version=5
 
 [application]
 
-config/name="test_code"
+config/name="Poker Manager"
+config/description="An application to manage poker games easily, keeping all the records of player choices, aiding in calculated decision making."
+config/version="0.0.1"
 run/main_scene="uid://dnc3h4rwjcaut"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/fullsize=false
+boot_splash/image="uid://d0rk7q6isegc8"
+config/icon="uid://d0rk7q6isegc8"
 
 [autoload]
 
 GameManager="*res://scripts/game_manager.gd"
 SceneManager="*res://scripts/scene_manager.gd"
 
+[display]
+
+window/size/mode=3
+
 [file_customization]
 
 folder_colors={
+"res://assets/": "green",
 "res://scenes/": "yellow",
 "res://scripts/": "red"
 }
+
+[gui]
+
+theme/custom_font="uid://vop1v41km7qm"
 
 [rendering]
 
