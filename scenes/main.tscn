@@ -62,6 +62,7 @@ fit_content = true
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 columns = 2
 
 [node name="Button" type="Button" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer/GridContainer"]
@@ -87,3 +88,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Match"
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer"]
+layout_mode = 2
+text = "Undo"

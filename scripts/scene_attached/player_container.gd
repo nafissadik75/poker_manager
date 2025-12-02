@@ -23,14 +23,16 @@ var this_name : String :
 @onready var player_name: Label = $VBoxContainer/PlayerName
 @onready var p_name_line_edit: LineEdit = $VBoxContainer/PlayerNameLineEdit
 @onready var money_label: Label = $VBoxContainer/MoneyLabel
+@onready var money_line_edit: LineEdit = $VBoxContainer/MoneyLineEdit
 
-signal player_name_set
+signal player_set
 
 func _ready() -> void:
 	if !editable:
 		this_name = info.player_name
 		money = info.money
 		p_name_line_edit.hide()
+		money_line_edit.hide()
 	else:
 		p_name_line_edit.grab_focus()
 
@@ -38,7 +40,13 @@ func set_player_name(name_text : String) -> void:
 	name_text = name_text.to_upper()
 	info.player_name = name_text
 	this_name = name_text
-	player_name_set.emit()
+	money_line_edit.grab_focus()
+
+func set_player_money(money_str : String) -> void:
+	var money_int = int(money_str)
+	money = money_int
+	info.money = money
+	player_set.emit()
 
 func _on_player_name_line_edit_text_submitted(new_text: String) -> void:
 	if not new_text.is_empty():
@@ -47,3 +55,11 @@ func _on_player_name_line_edit_text_submitted(new_text: String) -> void:
 func _on_player_name_line_edit_focus_exited() -> void:
 	if not p_name_line_edit.text.is_empty():
 		set_player_name(p_name_line_edit.text)
+
+func _on_money_line_edit_text_submitted(new_text: String) -> void:
+	if not new_text.is_empty():
+		set_player_money(new_text)
+
+func _on_money_line_edit_focus_exited() -> void:
+	if not money_line_edit.text.is_empty():
+		set_player_money(money_line_edit.text)

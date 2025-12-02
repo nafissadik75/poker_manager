@@ -34,5 +34,11 @@ vertical_alignment = 1
 layout_mode = 2
 placeholder_text = "Input player name"
 
+[node name="MoneyLineEdit" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Input Current Amount of Money"
+
 [connection signal="focus_exited" from="VBoxContainer/PlayerNameLineEdit" to="." method="_on_player_name_line_edit_focus_exited"]
 [connection signal="text_submitted" from="VBoxContainer/PlayerNameLineEdit" to="." method="_on_player_name_line_edit_text_submitted"]
+[connection signal="focus_exited" from="VBoxContainer/MoneyLineEdit" to="." method="_on_money_line_edit_focus_exited"]
+[connection signal="text_submitted" from="VBoxContainer/MoneyLineEdit" to="." method="_on_money_line_edit_text_submitted"]
