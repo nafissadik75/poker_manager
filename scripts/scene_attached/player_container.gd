@@ -1,26 +1,19 @@
 extends PanelContainer
 class_name PlayerContainer
 
-var info : PlayerInfo
+var p : PlayerInfo
 
-var money : int = 200 :
+var money : int :
 	set(value):
 		money = value
 		money_label.set_text(str(value))
-var editable : bool = true :
-	set(value):
-		if value == true:
-			editable = true
-			info = GameManager.get_free_player_info()
-		elif value == false:
-			editable = false
-			info = GameManager.get_free_player_info()
+var editable : bool = true
 var this_name : String : 
 	set(value):
 		this_name = value
-		player_name.set_text(value)
+		p_name_label.set_text(value)
 
-@onready var player_name: Label = $VBoxContainer/PlayerName
+@onready var p_name_label: Label = $VBoxContainer/PlayerName
 @onready var p_name_line_edit: LineEdit = $VBoxContainer/PlayerNameLineEdit
 @onready var money_label: Label = $VBoxContainer/MoneyLabel
 @onready var money_line_edit: LineEdit = $VBoxContainer/MoneyLineEdit
@@ -29,24 +22,30 @@ signal player_set
 
 func _ready() -> void:
 	if !editable:
-		this_name = info.player_name
-		money = info.money
+		this_name = p.name
+		money = p.stack
 		p_name_line_edit.hide()
 		money_line_edit.hide()
+		
+		p.stack_updated.connect(stack_changed)
+		
 	else:
+		p = PlayerInfo.new()
+		GameManager.players.append(p)
 		p_name_line_edit.grab_focus()
 
 func set_player_name(name_text : String) -> void:
 	name_text = name_text.to_upper()
-	info.player_name = name_text
+	p.name = name_text
 	this_name = name_text
 	money_line_edit.grab_focus()
 
 func set_player_money(money_str : String) -> void:
-	var money_int = int(money_str)
-	money = money_int
-	info.money = money
+	p.stack = int(money_str)
 	player_set.emit()
+
+func stack_changed() -> void:
+	money_label.set_text(str(p.stack))
 
 func _on_player_name_line_edit_text_submitted(new_text: String) -> void:
 	if not new_text.is_empty():

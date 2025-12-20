@@ -20,7 +20,7 @@ func _on_add_player_button_pressed() -> void:
 func _on_start_button_pressed() -> void:
 	get_tree().change_scene_to_packed(SceneManager.MAIN)
 
-func _unhandled_key_input(event: InputEvent) -> void:
+func _unhandled_key_input(_event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_CTRL):
 		if Input.is_key_pressed(KEY_A):
 			%AddPlayerButton.pressed.emit()

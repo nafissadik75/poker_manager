@@ -1,0 +1,9 @@
+res://scenes/initializer.tscn
+res://scripts/scene_attached/initializer.gd
+res://scripts/player_info.gd
+res://scripts/scene_manager.gd
+res://scripts/game_manager.gd
+res://scripts/scene_attached/player_container.gd
+res://scenes/main.tscn
+res://scripts/scene_attached/main.gd
+res://scenes/player_container.tscn
