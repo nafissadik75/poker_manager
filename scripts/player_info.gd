@@ -23,7 +23,7 @@ var is_active : bool = true:
 			folded.emit()
 
 ## Player's current bet in current round. Resets back to zero every round
-var current_bet : int:
+var current_bet : int = 0:
 	set(value):
 		current_bet = int(value)
 		current_bet_updated.emit()

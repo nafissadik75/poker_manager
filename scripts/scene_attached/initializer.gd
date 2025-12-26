@@ -2,6 +2,7 @@ extends Control
 
 func remove_player_card() -> void:
 	if %PlayerGrid.get_child_count() != 0:
+		GameManager.players.pop_back()
 		%PlayerGrid.get_child(-1).queue_free()
 
 func _on_player_set() -> void:

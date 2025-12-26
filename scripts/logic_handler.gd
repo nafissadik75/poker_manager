@@ -5,6 +5,7 @@ func start_game():
 	set_seats()
 	set_roles()
 	set_pot()
+	start_round()
 
 func set_seats() -> void:
 	for i in range(len(GameManager.players)):
@@ -34,3 +35,18 @@ func set_pot() -> void:
 	
 	GameManager.big_blind.stack -= GameManager.big_blind_amt
 	GameManager.small_blind.stack -= GameManager.small_blind_amt
+	GameManager.current_bet = GameManager.big_blind_amt
+
+func start_round() -> void:
+	match GameManager.round:
+		GameManager.Rounds.PREFLOP:
+			GameManager.current_player_idx = GameManager.small_blind_idx + 1
+			
+		GameManager.Rounds.FLOP:
+			pass
+		GameManager.Rounds.TURN:
+			pass
+		GameManager.Rounds.RIVER:
+			pass
+		GameManager.Rounds.SHOWDOWN:
+			pass

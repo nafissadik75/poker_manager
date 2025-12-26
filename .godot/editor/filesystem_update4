@@ -4,3 +4,5 @@ res://scripts/logic_handler.gd
 res://scripts/scene_attached/main.gd
 res://scripts/player_info.gd
 res://scenes/main.tscn
+res://scenes/initializer.tscn
+res://scripts/scene_attached/initializer.gd
