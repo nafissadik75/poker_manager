@@ -60,6 +60,19 @@ bbcode_enabled = true
 text = "It's nabil's turn!"
 fit_content = true
 
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "POT:"
+
+[node name="PotLabel" type="Label" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "100"
+
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3

@@ -23,6 +23,7 @@ config/icon="uid://d0rk7q6isegc8"
 
 GameManager="*res://scripts/game_manager.gd"
 SceneManager="*res://scripts/scene_manager.gd"
+LogicHandler="*res://scripts/logic_handler.gd"
 
 [display]
 

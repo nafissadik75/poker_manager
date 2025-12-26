@@ -6,7 +6,6 @@ var name : String :
 	set(new_name):
 		name = new_name
 		player_name_updated.emit(new_name)
-signal player_name_updated(new_name)
 
 ## Amount of money/chips the player currently has
 var stack : int:
@@ -15,7 +14,6 @@ var stack : int:
 		stack_updated.emit()
 	get():
 		return int(stack)
-signal stack_updated
 
 ## If the player didn't fold.
 var is_active : bool = true:
@@ -23,7 +21,6 @@ var is_active : bool = true:
 		if value == false:
 			is_active = value
 			folded.emit()
-signal folded
 
 ## Player's current bet in current round. Resets back to zero every round
 var current_bet : int:
@@ -32,11 +29,17 @@ var current_bet : int:
 		current_bet_updated.emit()
 	get():
 		return int(current_bet)
-signal current_bet_updated
 
 ## Player's seat index for cycling through rounds. Also used to determine whether player is dealer, small blind or big blind
 var seat_idx : int:
 	set(value):
 		seat_idx = int(value)
 		seat_idx_updated.emit()
+
+var role : GameManager.Roles = GameManager.Roles.NORMAL
+
+signal player_name_updated(new_name)
+signal stack_updated
+signal folded
+signal current_bet_updated
 signal seat_idx_updated
