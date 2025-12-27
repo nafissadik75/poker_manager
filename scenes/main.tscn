@@ -29,6 +29,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 columns = 4
 
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HistoryRT_Label" type="RichTextLabel" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+bbcode_enabled = true
+
 [node name="GameController" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -92,30 +103,36 @@ layout_mode = 2
 size_flags_vertical = 3
 columns = 2
 
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer/GridContainer"]
+[node name="CheckButton" type="Button" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Check"
+
+[node name="FoldButton" type="Button" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Fold"
+
+[node name="MatchButton" type="Button" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Match"
 
-[node name="Button2" type="Button" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer/GridContainer"]
+[node name="RaiseButton" type="Button" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Match"
+text = "Raise"
 
-[node name="Button3" type="Button" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Match"
-
-[node name="Button4" type="Button" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Match"
-
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer"]
+[node name="UndoButton" type="Button" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer"]
 layout_mode = 2
 text = "Undo"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/GameController/VBoxContainer/GridContainer/CheckButton" to="." method="_on_check_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/GameController/VBoxContainer/GridContainer/FoldButton" to="." method="_on_fold_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/GameController/VBoxContainer/GridContainer/MatchButton" to="." method="_on_match_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/GameController/VBoxContainer/GridContainer/RaiseButton" to="." method="_on_raise_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/GameController/VBoxContainer/UndoButton" to="." method="_on_undo_button_pressed"]

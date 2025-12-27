@@ -1,5 +1,7 @@
+PanelContainer
+RichTextLabel
+MarginContainer
 Label
 HBoxContainer
 LineEdit
 Button
-RichTextLabel

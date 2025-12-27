@@ -11,7 +11,7 @@ func set_seats() -> void:
 	for i in range(len(GameManager.players)):
 		GameManager.players[i].seat_idx = i
 	
-	GameManager.players.sort_custom(GameManager.sort_players_on_seat_idx)
+	GameManager.players.sort_custom(sort_players_on_seat_idx)
 
 func set_roles(dealer_idx : int = 0) -> void:
 	GameManager.dealer_idx = dealer_idx
@@ -41,12 +41,21 @@ func start_round() -> void:
 	match GameManager.round:
 		GameManager.Rounds.PREFLOP:
 			GameManager.current_player_idx = GameManager.small_blind_idx + 1
-			
 		GameManager.Rounds.FLOP:
-			pass
+			reset_players_bets()
 		GameManager.Rounds.TURN:
-			pass
+			reset_players_bets()
 		GameManager.Rounds.RIVER:
-			pass
+			reset_players_bets()
 		GameManager.Rounds.SHOWDOWN:
-			pass
+			reset_players_bets()
+
+func reset_players_bets() -> void:
+	for p in GameManager.players:
+		p.current_bet = 0
+
+func sort_players_on_seat_idx(a : PlayerInfo , b : PlayerInfo) -> bool:
+	if a.seat_idx < b.seat_idx:
+		return true
+	else:
+		return false

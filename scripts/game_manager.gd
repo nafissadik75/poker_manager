@@ -45,13 +45,34 @@ var current_player_idx : int :
 	set(value):
 		current_player_idx = value
 		current_player_idx_updated.emit(current_player_idx)
+		print(current_player_idx)
 
 signal current_player_idx_updated(value)
 signal pot_updated(value)
 signal current_bet_updated(value)
 
-func sort_players_on_seat_idx(a : PlayerInfo , b : PlayerInfo) -> bool:
-	if a.seat_idx < b.seat_idx:
-		return true
+var command_stack : Array[Command]
+
+func execute_command(cmd : Command) -> void:
+	cmd.execute()
+	command_stack.append(cmd)
+	advance_turn()
+
+func undo_last():
+	if command_stack.is_empty():
+		return
+	var cmd : Command = command_stack.pop_back()
+	cmd.undo()
+	rewind_turn()
+
+func advance_turn() -> void:
+	if current_player_idx + 1 < players.size():
+		if players[current_player_idx + 1].is_active:
+			current_player_idx += 1
 	else:
-		return false
+		current_player_idx = 0
+	
+func rewind_turn() -> void:
+	if current_player_idx <= 0:
+		return
+	current_player_idx -= 1
