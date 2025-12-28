@@ -6,6 +6,7 @@ extends Control
 @onready var player_turn_label: Label = $MarginContainer/HBoxContainer/GameController/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PlayerTurnLabel
 @onready var history_rt_label: RichTextLabel = $MarginContainer/HBoxContainer/MarginContainer/PanelContainer/HistoryRT_Label
 @onready var round_label: Label = $MarginContainer/HBoxContainer/GameController/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/RoundLabel
+@onready var cmd_buttons: GridContainer = $MarginContainer/HBoxContainer/GameController/VBoxContainer/CmdButtons
 
 ## for debugging purposes only
 ## change to GameManager.players after done
@@ -24,6 +25,7 @@ func _ready() -> void:
 		card_inst.p = player
 		card_inst.editable = false
 		%PlayersContainer.add_child(card_inst)
+	set_player_available_commands()
 
 func connect_signals() -> void:
 	GameManager.pot_updated.connect(_on_pot_updated)
@@ -42,25 +44,53 @@ func _on_round_updated(value : GameManager.Rounds):
 	var x : String = "%s ROUND" %GameManager.Rounds.keys()[GameManager.round]
 	round_label.set_text(x)
 
+
+func set_player_available_commands() -> void:
+	## Disable all the command buttons
+	for child in cmd_buttons.get_children():
+		child = child as Button
+		child.disabled = true
+	
+	## Now enable only the commands that the current player can choose
+	var arr : Array = LogicHandler.available_cmds(GameManager.players[GameManager.current_player_idx])
+	for cmd in arr:
+		match cmd:
+			MatchCommand:
+				%MatchButton.disabled = false
+			CheckCommand:
+				%CheckButton.disabled = false
+			FoldCommand:
+				%FoldButton.disabled = false
+			RaiseCommand:
+				%RaiseButton.disabled = false
+			BetCommand:
+				%BetButton.disabled = false
+
+
+### All button signal functions
 func _on_check_button_pressed() -> void:
 	var c_cmd : CheckCommand = CheckCommand.new()
 	GameManager.execute_command(c_cmd)
 	history_rt_label.append_text("\n" + c_cmd.get_description())
-
+	set_player_available_commands()
 func _on_fold_button_pressed() -> void:
 	var f_cmd : FoldCommand = FoldCommand.new()
 	GameManager.execute_command(f_cmd)
 	history_rt_label.append_text("\n" + f_cmd.get_description())
-
+	set_player_available_commands()
 func _on_match_button_pressed() -> void:
 	var x : int = GameManager.current_bet - GameManager.players[GameManager.current_player_idx].current_bet
 	var m_cmd : MatchCommand = MatchCommand.new(x)
 	GameManager.execute_command(m_cmd)
 	history_rt_label.append_text("\n" + m_cmd.get_description())
-
+	set_player_available_commands()
 func _on_raise_button_pressed() -> void:
 	pass # Replace with function body.
-
 func _on_undo_button_pressed() -> void:
 	history_rt_label.append_text(" - Undo")
 	GameManager.undo_last()
+	set_player_available_commands()
+func _on_bet_button_pressed() -> void:
+	var b_cmd : BetCommand = BetCommand.new(5) ## change it later
+	GameManager.execute_command(b_cmd)
+	set_player_available_commands()

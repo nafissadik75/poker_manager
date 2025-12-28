@@ -18,9 +18,8 @@ class_name PlayerInfo
 ## If the player didn't fold.
 var is_active : bool = true:
 	set(value):
-		if value == false:
-			is_active = value
-			folded.emit()
+		is_active = value
+		folded.emit(is_active)
 
 ## Player's current bet in current round. Resets back to zero every round
 var current_bet : int = 0:
@@ -40,6 +39,6 @@ var role : GameManager.Roles = GameManager.Roles.NORMAL
 
 signal player_name_updated(new_name)
 signal stack_updated
-signal folded
+signal folded(active)
 signal current_bet_updated
 signal seat_idx_updated

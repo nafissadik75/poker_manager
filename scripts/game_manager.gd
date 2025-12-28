@@ -49,7 +49,6 @@ var current_player_idx : int :
 	set(value):
 		current_player_idx = value
 		current_player_idx_updated.emit(current_player_idx)
-		print(current_player_idx)
 
 signal round_updated(value)
 signal current_player_idx_updated(value)
@@ -72,19 +71,18 @@ func undo_last():
 
 ## Advancing to the next player, should also check if the round is over or not
 func advance_turn() -> void:
-	if current_player_idx >= players.size() - 1:
-		var move_to_next_round : bool = true
+	var all_p_same_current_bet : bool = true
+	if players[current_player_idx] == players[-1]:
 		for p in players:
 			if p.current_bet != current_bet:
-				move_to_next_round = false
+				all_p_same_current_bet = false
 				break
-		if move_to_next_round:
-			round += 1
+		if all_p_same_current_bet:
+			LogicHandler.move_to_next_round()
 		else:
 			current_player_idx = 0
 	else:
 		current_player_idx += 1
-			
 
 
 func rewind_turn() -> void:

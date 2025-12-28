@@ -54,6 +54,19 @@ func start_round() -> void:
 			reset_players_bets()
 			GameManager.current_player_idx = 0
 
+func available_cmds(p : PlayerInfo) -> Array:
+	if p.current_bet < GameManager.current_bet:
+		return [MatchCommand, RaiseCommand, FoldCommand]
+	elif p.current_bet == GameManager.current_bet:
+		return [CheckCommand, FoldCommand, BetCommand]
+	else:
+		return []
+
+func move_to_next_round() -> void:
+	if not GameManager.round == GameManager.Rounds.SHOWDOWN:
+		GameManager.round += 1
+		start_round()
+
 func reset_players_bets() -> void:
 	for p in GameManager.players:
 		p.current_bet = 0
