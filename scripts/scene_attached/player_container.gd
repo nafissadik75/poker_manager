@@ -17,6 +17,7 @@ var this_name : String :
 @onready var p_name_line_edit: LineEdit = $VBoxContainer/PlayerNameLineEdit
 @onready var money_label: Label = $VBoxContainer/MoneyLabel
 @onready var money_line_edit: LineEdit = $VBoxContainer/MoneyLineEdit
+@onready var current_bet_label: Label = $VBoxContainer/HBoxContainer/CurrentBetLabel
 
 signal player_set
 
@@ -28,6 +29,7 @@ func _ready() -> void:
 		money_line_edit.hide()
 		
 		p.stack_updated.connect(stack_changed)
+		p.current_bet_updated.connect(_on_current_bet_changed)
 		
 	else:
 		p = PlayerInfo.new()
@@ -46,6 +48,8 @@ func set_player_money(money_str : String) -> void:
 
 func stack_changed() -> void:
 	money_label.set_text(str(p.stack))
+func _on_current_bet_changed():
+	current_bet_label.set_text("Current Bet: %s" %str(p.current_bet))
 
 func _on_player_name_line_edit_text_submitted(new_text: String) -> void:
 	if not new_text.is_empty():

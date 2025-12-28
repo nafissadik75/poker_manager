@@ -43,12 +43,16 @@ func start_round() -> void:
 			GameManager.current_player_idx = GameManager.small_blind_idx + 1
 		GameManager.Rounds.FLOP:
 			reset_players_bets()
+			GameManager.current_player_idx = 0
 		GameManager.Rounds.TURN:
 			reset_players_bets()
+			GameManager.current_player_idx = 0
 		GameManager.Rounds.RIVER:
 			reset_players_bets()
+			GameManager.current_player_idx = 0
 		GameManager.Rounds.SHOWDOWN:
 			reset_players_bets()
+			GameManager.current_player_idx = 0
 
 func reset_players_bets() -> void:
 	for p in GameManager.players:

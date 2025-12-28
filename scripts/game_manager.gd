@@ -20,7 +20,11 @@ enum Roles {
 	NORMAL,
 }
 
-var round : Rounds = Rounds.PREFLOP
+var round : Rounds = Rounds.PREFLOP :
+	set(value):
+		round = value
+		LogicHandler.start_round()
+		round_updated.emit(round)
 
 ### All variables regarding dealer, small_blind, big_blind
 var dealer_idx : int 
@@ -47,6 +51,7 @@ var current_player_idx : int :
 		current_player_idx_updated.emit(current_player_idx)
 		print(current_player_idx)
 
+signal round_updated(value)
 signal current_player_idx_updated(value)
 signal pot_updated(value)
 signal current_bet_updated(value)
@@ -65,13 +70,23 @@ func undo_last():
 	cmd.undo()
 	rewind_turn()
 
+## Advancing to the next player, should also check if the round is over or not
 func advance_turn() -> void:
-	if current_player_idx + 1 < players.size():
-		if players[current_player_idx + 1].is_active:
-			current_player_idx += 1
+	if current_player_idx >= players.size() - 1:
+		var move_to_next_round : bool = true
+		for p in players:
+			if p.current_bet != current_bet:
+				move_to_next_round = false
+				break
+		if move_to_next_round:
+			round += 1
+		else:
+			current_player_idx = 0
 	else:
-		current_player_idx = 0
-	
+		current_player_idx += 1
+			
+
+
 func rewind_turn() -> void:
 	if current_player_idx <= 0:
 		return

@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://bewhe067c43xi"]
+[gd_scene load_steps=12 format=3 uid="uid://bewhe067c43xi"]
 
 [ext_resource type="Script" uid="uid://bq1g0g55aqpfs" path="res://scripts/scene_attached/main.gd" id="1_0wfyh"]
+[ext_resource type="Script" uid="uid://83rwev66hr2i" path="res://scripts/player_info.gd" id="2_ya4ey"]
+[ext_resource type="Resource" uid="uid://dih3n5gr8bx4c" path="res://debugging_resources/fady.tres" id="3_eb6dy"]
+[ext_resource type="Resource" uid="uid://dh62a84pragw1" path="res://debugging_resources/karam.tres" id="4_trceg"]
+[ext_resource type="Resource" uid="uid://n4ox6gx2k417" path="res://debugging_resources/mary.tres" id="5_a8y0u"]
+[ext_resource type="Resource" uid="uid://crehlybn3bepg" path="res://debugging_resources/mikhail.tres" id="6_jkv2x"]
+[ext_resource type="Resource" uid="uid://ciqh8iamuwgob" path="res://debugging_resources/nabil.tres" id="7_jbj1t"]
+[ext_resource type="Resource" uid="uid://dbi4hlu1col0y" path="res://debugging_resources/nafis.tres" id="8_muem4"]
+[ext_resource type="Resource" uid="uid://b0yor3j6xniht" path="res://debugging_resources/parni.tres" id="9_dp3eg"]
+[ext_resource type="Resource" uid="uid://r47pidehe1im" path="res://debugging_resources/rand.tres" id="10_0ld40"]
+[ext_resource type="Resource" uid="uid://bgs3vlesae3lw" path="res://debugging_resources/zukhra.tres" id="11_gqmmt"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -10,6 +20,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0wfyh")
+x = Array[ExtResource("2_ya4ey")]([ExtResource("3_eb6dy"), ExtResource("4_trceg"), ExtResource("5_a8y0u"), ExtResource("6_jkv2x"), ExtResource("7_jbj1t"), ExtResource("8_muem4"), ExtResource("9_dp3eg"), ExtResource("10_0ld40"), ExtResource("11_gqmmt")])
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -58,7 +69,7 @@ layout_mode = 2
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="RoundLabel" type="Label" parent="MarginContainer/HBoxContainer/GameController/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 text = "PRE FLOP ROUND"

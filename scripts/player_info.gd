@@ -2,13 +2,13 @@ extends Resource
 class_name PlayerInfo
 
 ## The name of this player. emits a signal when the name is changed. Updates itself in game manager as well.
-var name : String :
+@export var name : String :
 	set(new_name):
 		name = new_name
 		player_name_updated.emit(new_name)
 
 ## Amount of money/chips the player currently has
-var stack : int:
+@export var stack : int:
 	set(value):
 		stack = int(value)
 		stack_updated.emit()
