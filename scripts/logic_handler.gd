@@ -3,7 +3,7 @@ extends Node
 
 func start_game():
 	set_seats()
-	set_roles()
+	set_roles(GameManager.players.size()-1)
 	set_pot()
 	start_round()
 
@@ -13,10 +13,10 @@ func set_seats() -> void:
 	
 	GameManager.players.sort_custom(sort_players_on_seat_idx)
 
-func set_roles(dealer_idx : int = 0) -> void:
+func set_roles(dealer_idx : int) -> void:
 	GameManager.dealer_idx = dealer_idx
-	GameManager.big_blind_idx = dealer_idx + 1
-	GameManager.small_blind_idx = dealer_idx + 2
+	GameManager.big_blind_idx = 0
+	GameManager.small_blind_idx = 1
 	
 	GameManager.players[GameManager.dealer_idx].role = GameManager.Roles.DEALER
 	GameManager.players[GameManager.big_blind_idx].role = GameManager.Roles.BIG_BLIND
@@ -36,6 +36,9 @@ func set_pot() -> void:
 	GameManager.big_blind.stack -= GameManager.big_blind_amt
 	GameManager.small_blind.stack -= GameManager.small_blind_amt
 	GameManager.current_bet = GameManager.big_blind_amt
+	
+	GameManager.big_blind.current_bet = GameManager.current_bet
+	GameManager.small_blind.current_bet = GameManager.small_blind_amt
 
 func start_round() -> void:
 	match GameManager.round:
@@ -63,11 +66,12 @@ func available_cmds(p : PlayerInfo) -> Array:
 		return []
 
 func move_to_next_round() -> void:
-	if not GameManager.round == GameManager.Rounds.SHOWDOWN:
+	if GameManager.round != GameManager.Rounds.SHOWDOWN:
 		GameManager.round += 1
 		start_round()
 
 func reset_players_bets() -> void:
+	GameManager.current_bet = 0
 	for p in GameManager.players:
 		p.current_bet = 0
 

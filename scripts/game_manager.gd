@@ -73,7 +73,10 @@ func undo_last():
 func advance_turn() -> void:
 	var all_p_same_current_bet : bool = true
 	if players[current_player_idx] == players[-1]:
-		for p in players:
+		var arr : Array[PlayerInfo] = players
+		if round == GameManager.Rounds.PREFLOP:
+			arr.erase(small_blind)
+		for p in arr:
 			if p.current_bet != current_bet:
 				all_p_same_current_bet = false
 				break

@@ -25,6 +25,7 @@ func _ready() -> void:
 	if !editable:
 		this_name = p.name
 		money = p.stack
+		_on_current_bet_changed()
 		p_name_line_edit.hide()
 		money_line_edit.hide()
 		
