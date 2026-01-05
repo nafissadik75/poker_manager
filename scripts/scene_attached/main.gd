@@ -18,7 +18,6 @@ func _ready() -> void:
 	## Placeholder for debugging
 	GameManager.players = x
 	##-----
-	
 	LogicHandler.start_game()
 	for player in GameManager.players:
 		var card_inst : PlayerContainer = SceneManager.PLAYER_CONTAINER.instantiate()
@@ -41,7 +40,7 @@ func _on_current_player_idx_updated(value : int) -> void:
 	var p_name : String = GameManager.players[value].name
 	player_turn_label.set_text("It's " + str(p_name) + "'s turn!")
 func _on_round_updated(value : GameManager.Rounds):
-	var x : String = "%s ROUND" %GameManager.Rounds.keys()[GameManager.round]
+	var x : String = "%s ROUND" %GameManager.Rounds.keys()[value]
 	round_label.set_text(x)
 
 

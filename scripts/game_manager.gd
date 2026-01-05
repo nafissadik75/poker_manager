@@ -5,38 +5,17 @@ extends Node
 var players : Array[PlayerInfo]
 
 ### Poker State
-enum Rounds {
-	PREFLOP,
-	FLOP,
-	TURN,
-	RIVER,
-	SHOWDOWN,
-}
+enum Rounds {PREFLOP, FLOP, TURN, RIVER, SHOWDOWN,}
+enum Roles {DEALER, BIG_BLIND, SMALL_BLIND,NORMAL,}
 
-enum Roles {
-	DEALER,
-	BIG_BLIND,
-	SMALL_BLIND,
-	NORMAL,
-}
-
-var round : Rounds = Rounds.PREFLOP :
+var curr_round : Rounds = Rounds.PREFLOP:
 	set(value):
-		round = value
-		LogicHandler.start_round()
-		round_updated.emit(round)
+		curr_round = value
+		round_updated.emit(curr_round)
 
 ### All variables regarding dealer, small_blind, big_blind
-var dealer_idx : int 
-var small_blind_idx : int 
-var big_blind_idx : int
 var small_blind_amt : int
 var big_blind_amt : int
-var dealer : PlayerInfo
-var small_blind : PlayerInfo
-var big_blind : PlayerInfo
-
-
 var pot : int :
 	set(value):
 		pot = value
@@ -71,22 +50,12 @@ func undo_last():
 
 ## Advancing to the next player, should also check if the round is over or not
 func advance_turn() -> void:
-	var all_p_same_current_bet : bool = true
-	if players[current_player_idx] == players[-1]:
-		var arr : Array[PlayerInfo] = players
-		if round == GameManager.Rounds.PREFLOP:
-			arr.erase(small_blind)
-		for p in arr:
-			if p.current_bet != current_bet:
-				all_p_same_current_bet = false
-				break
-		if all_p_same_current_bet:
-			LogicHandler.move_to_next_round()
+	if not LogicHandler.only_one_player_remains(players):
+		if LogicHandler.all_player_has_equal_bets(players, current_bet):
+			curr_round += 1
+			LogicHandler.start_round(curr_round)
 		else:
-			current_player_idx = 0
-	else:
-		current_player_idx += 1
-
+			current_player_idx = LogicHandler.get_next_eligible_player(players, current_player_idx)
 
 func rewind_turn() -> void:
 	if current_player_idx <= 0:

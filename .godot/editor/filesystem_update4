@@ -1,9 +1,5 @@
-res://scenes/main.tscn
-res://scripts/commands/fold_command.gd
-res://scenes/player_container.tscn
-res://scripts/scene_attached/player_container.gd
-res://scripts/player_info.gd
 res://scripts/game_manager.gd
+res://scenes/main.tscn
 res://scripts/logic_handler.gd
-res://scripts/commands/bet_command.gd
+res://scripts/commands/RaiseCommand.gd
 res://scripts/scene_attached/main.gd
