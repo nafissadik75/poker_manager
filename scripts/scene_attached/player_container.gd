@@ -32,6 +32,7 @@ func _ready() -> void:
 		p.stack_updated.connect(stack_changed)
 		p.current_bet_updated.connect(_on_current_bet_changed)
 		p.folded.connect(_on_folded)
+		GameManager.current_player_idx_updated.connect(_on_turn_over)
 		
 	else:
 		p = PlayerInfo.new()
@@ -55,9 +56,9 @@ func _on_current_bet_changed():
 	current_bet_label.set_text("Current Bet: %s" %str(p.current_bet))
 func _on_folded(active : bool) -> void:
 	if not active:
-		hide()
+		self.set_theme(SceneManager.INACTIVE_THEME)
 	else:
-		show()
+		self.set_theme(SceneManager.INIT_THEME)
 
 func _on_player_name_line_edit_text_submitted(new_text: String) -> void:
 	if not new_text.is_empty():
@@ -74,3 +75,9 @@ func _on_money_line_edit_text_submitted(new_text: String) -> void:
 func _on_money_line_edit_focus_exited() -> void:
 	if not money_line_edit.text.is_empty():
 		set_player_money(money_line_edit.text)
+
+func _on_turn_over(idx : int) -> void:
+	if idx == p.seat_idx:
+		self.set_theme(SceneManager.ACTIVE_THEME)
+	elif p.is_active:
+		self.set_theme(SceneManager.INIT_THEME)

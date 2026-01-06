@@ -1,5 +1,12 @@
-res://scripts/game_manager.gd
 res://scenes/main.tscn
-res://scripts/logic_handler.gd
-res://scripts/commands/RaiseCommand.gd
 res://scripts/scene_attached/main.gd
+res://scenes/player_container.tscn
+res://resources/init.theme
+res://resources/inactive.theme
+res://scripts/scene_manager.gd
+res://scripts/scene_attached/player_container.gd
+res://resources/active.theme
+res://scripts/game_manager.gd
+res://scripts/commands/bet_command.gd
+res://scripts/commands/fold_command.gd
+res://scripts/logic_handler.gd

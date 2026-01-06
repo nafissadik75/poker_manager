@@ -71,7 +71,7 @@ func reordered_from_next(players: Array[PlayerInfo], current_index: int) -> Arra
 func only_one_player_remains(players : Array[PlayerInfo]) -> bool:
 	var player_unfolded : int = 0
 	for p in players:
-		if not p.is_active:
+		if p.is_active:
 			player_unfolded += 1
 	if player_unfolded == 1:
 		print("there's only one player remaining")
@@ -94,16 +94,22 @@ func start_round(round : int = 0) -> void:
 		GameManager.Rounds.FLOP:
 			print("this is the flop round")
 			reset_players_bets()
-			GameManager.current_player_idx = get_next_eligible_player(GameManager.players, GameManager.current_player_idx)
+			GameManager.current_player_idx = get_next_eligible_player(GameManager.players, get_dealer_idx())
 		GameManager.Rounds.TURN:
 			reset_players_bets()
-			GameManager.current_player_idx = get_next_eligible_player(GameManager.players, GameManager.current_player_idx)
+			GameManager.current_player_idx = get_next_eligible_player(GameManager.players, get_dealer_idx())
 		GameManager.Rounds.RIVER:
 			reset_players_bets()
-			GameManager.current_player_idx = get_next_eligible_player(GameManager.players, GameManager.current_player_idx)
+			GameManager.current_player_idx = get_next_eligible_player(GameManager.players, get_dealer_idx())
 		GameManager.Rounds.SHOWDOWN:
 			reset_players_bets()
-			GameManager.current_player_idx = get_next_eligible_player(GameManager.players, GameManager.current_player_idx)
+			GameManager.current_player_idx = get_next_eligible_player(GameManager.players, get_dealer_idx())
+
+func get_dealer_idx() -> int:
+	for p in GameManager.players:
+		if p.role == GameManager.Roles.DEALER:
+			return p.seat_idx
+	return 0
 
 func available_cmds(p : PlayerInfo) -> Array:
 	if p.current_bet < GameManager.current_bet:
@@ -127,8 +133,8 @@ func sort_players_on_seat_idx(a : PlayerInfo , b : PlayerInfo) -> bool:
 func all_player_has_equal_bets(players : Array[PlayerInfo], curr_bet : int) -> bool:
 	var all_p_equal_bets : bool = true
 	for p in players:
-		if p.current_bet != curr_bet:
+		if p.current_bet != curr_bet and p.is_active:
 			all_p_equal_bets = false
 			break
-	print("if all player has equal bets or not", all_p_equal_bets)
+	print("true: all player has equal bets, false means doesn't: ", all_p_equal_bets)
 	return all_p_equal_bets

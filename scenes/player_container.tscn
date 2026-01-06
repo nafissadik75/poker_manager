@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://1hxqv24awscr"]
+[gd_scene load_steps=3 format=3 uid="uid://1hxqv24awscr"]
 
+[ext_resource type="Theme" uid="uid://bya1ml00a320b" path="res://resources/init.theme" id="1_a7xq8"]
 [ext_resource type="Script" uid="uid://bt4x7laf5hkm4" path="res://scripts/scene_attached/player_container.gd" id="1_r7lr4"]
 
 [node name="PlayerContainer" type="PanelContainer"]
@@ -10,6 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_a7xq8")
 script = ExtResource("1_r7lr4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]

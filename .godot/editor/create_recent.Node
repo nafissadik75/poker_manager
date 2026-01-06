@@ -1,7 +1,8 @@
-Button
-Label
-HBoxContainer
-PanelContainer
-RichTextLabel
 MarginContainer
 LineEdit
+Label
+VBoxContainer
+PanelContainer
+Button
+HBoxContainer
+RichTextLabel
