@@ -1,4 +1,5 @@
-## Autoload --- Logic Handler
+## Autoload
+## Logic Handler
 extends Node
 
 func start_game():
