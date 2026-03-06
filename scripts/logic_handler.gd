@@ -94,15 +94,19 @@ func start_round(round : int = 0) -> void:
 		GameManager.Rounds.FLOP:
 			print("this is the flop round")
 			reset_players_bets()
+			reset_player_turn_switch(GameManager.players)
 			GameManager.current_player_idx = get_next_eligible_player(GameManager.players, get_dealer_idx())
 		GameManager.Rounds.TURN:
 			reset_players_bets()
+			reset_player_turn_switch(GameManager.players)
 			GameManager.current_player_idx = get_next_eligible_player(GameManager.players, get_dealer_idx())
 		GameManager.Rounds.RIVER:
 			reset_players_bets()
+			reset_player_turn_switch(GameManager.players)
 			GameManager.current_player_idx = get_next_eligible_player(GameManager.players, get_dealer_idx())
 		GameManager.Rounds.SHOWDOWN:
 			reset_players_bets()
+			reset_player_turn_switch(GameManager.players)
 			GameManager.current_player_idx = get_next_eligible_player(GameManager.players, get_dealer_idx())
 
 func get_dealer_idx() -> int:
@@ -138,3 +142,14 @@ func all_player_has_equal_bets(players : Array[PlayerInfo], curr_bet : int) -> b
 			break
 	print("true: all player has equal bets, false means doesn't: ", all_p_equal_bets)
 	return all_p_equal_bets
+
+func everyone_moved_this_round(players : Array[PlayerInfo]) -> bool:
+	var everyone_moved : bool = true
+	for p in players:
+		if not p.moved_this_round:
+			everyone_moved = false
+	return everyone_moved
+
+func reset_player_turn_switch(players : Array[PlayerInfo]) -> void:
+	for p in players:
+		p.moved_this_round = false

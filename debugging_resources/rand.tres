@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlayerInfo" load_steps=2 format=3 uid="uid://r47pidehe1im"]
+
+[ext_resource type="Script" uid="uid://83rwev66hr2i" path="res://scripts/player_info.gd" id="1_fuqck"]
+
+[resource]
+script = ExtResource("1_fuqck")
+name = "rand"
+stack = 200
+metadata/_custom_type_script = "uid://83rwev66hr2i"

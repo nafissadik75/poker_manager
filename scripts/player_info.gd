@@ -34,7 +34,7 @@ var seat_idx : int:
 	set(value):
 		seat_idx = int(value)
 		seat_idx_updated.emit()
-
+var moved_this_round : bool = false
 var role : GameManager.Roles = GameManager.Roles.NORMAL
 
 signal player_name_updated(new_name)

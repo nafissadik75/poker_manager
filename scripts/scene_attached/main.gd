@@ -22,7 +22,7 @@ func _ready() -> void:
 	connect_signals()
 	
 	## Placeholder for debugging
-	GameManager.players = x
+	#GameManager.players = x
 	##-----
 	for player in GameManager.players:
 		var card_inst : PlayerContainer = SceneManager.PLAYER_CONTAINER.instantiate()
